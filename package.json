@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.4.7",
+    "less-loader": "^6.0.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
   },
@@ -17,6 +18,7 @@
     "@vue/cli-plugin-babel": "^4.5.0",
     "@vue/cli-service": "^4.5.0",
     "babel-plugin-component": "^1.1.1",
+    "less": "^4.1.1",
     "vue-cli-plugin-element-starter": "^1.0.3",
     "vue-template-compiler": "^2.6.11"
   },
