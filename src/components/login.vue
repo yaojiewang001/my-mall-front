@@ -54,6 +54,7 @@ export default {
             this.$refs.loginFormRef.resetFields()
         },
         login(){
+            /* 表单预验证 */
             this.$refs.loginFormRef.validate(async valid =>{
                 /* false直接退出不发起请求 */
                 if(!valid) return;
