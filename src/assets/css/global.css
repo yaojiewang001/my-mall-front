@@ -26,3 +26,15 @@ body .el-table th.gutter{
 .el-scrollbar__wrap{
     height: 300px;
 }
+.el-steps{
+    margin-top: 15px;
+}
+.el-step__title{
+    font-size: 13px;
+}
+.el-tag{
+    margin: 0 10px;
+}
+.ql-container{
+    min-height: 300px!important;
+}
