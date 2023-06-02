@@ -6,24 +6,11 @@
       <el-breadcrumb-item>商品管理</el-breadcrumb-item>
       <el-breadcrumb-item>添加商品</el-breadcrumb-item>
     </el-breadcrumb>
-
     <el-card>
       <!-- 消息提示 -->
-      <el-alert
-        title="消息提示的文案"
-        type="info"
-        center
-        show-icon
-        :closable="false"
-      >
-      </el-alert>
+      <el-alert title="消息提示的文案" type="info" center show-icon :closable="false"> </el-alert>
       <!-- 步骤区域 -->
-      <el-steps
-        :space="200"
-        :active="activeIndex - 0"
-        finish-status="success"
-        align-center
-      >
+      <el-steps :space="200" :active="activeIndex - 0" finish-status="success" align-center>
         <el-step title="基本信息"></el-step>
         <el-step title="商品参数"></el-step>
         <el-step title="商品属性"></el-step>
@@ -32,19 +19,8 @@
         <el-step title="完成"></el-step>
       </el-steps>
       <!-- Tab栏区域 -->
-      <el-form
-        :model="addForm"
-        :rules="addFormRules"
-        ref="addFormRef"
-        label-width="100px"
-        label-position="top"
-      >
-        <el-tabs
-          :tab-position="'left'"
-          v-model="activeIndex"
-          :before-leave="beforeTabLeave"
-          @tab-click="tabClick"
-        >
+      <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px" label-position="top">
+        <el-tabs :tab-position="'left'" v-model="activeIndex" :before-leave="beforeTabLeave" @tab-click="tabClick">
           <el-tab-pane label="基本信息" name="0">
             <el-form-item label="商品名称" prop="goods_name">
               <el-input v-model="addForm.goods_name"></el-input>
@@ -61,61 +37,32 @@
             <!-- prop校验规则，addFormRules里的goods_cat -->
             <el-form-item label="商品分类" prop="goods_cat">
               <!-- v-model输入的双向绑定，options数据源，props配置对象，@change输入框变化 -->
-              <el-cascader
-                v-model="addForm.goods_cat"
-                :options="cateList"
-                :props="cateProps"
-                @change="handleChange"
-              ></el-cascader>
+              <el-cascader v-model="addForm.goods_cat" :options="cateList" :props="cateProps" @change="handleChange"></el-cascader>
             </el-form-item>
           </el-tab-pane>
           <el-tab-pane label="商品参数" name="1">
-            <el-form-item
-              :label="item.attr_name"
-              v-for="item in manyTabData"
-              :key="item.attr_id"
-            >
+            <el-form-item :label="item.attr_name" v-for="item in manyTabData" :key="item.attr_id">
               <!-- v-model="item.attr_vals与label如果存在指定的值则为选中状态-->
               <el-checkbox-group v-model="item.attr_vals">
-                <el-checkbox
-                  :label="it"
-                  v-for="(it, i) in item.attr_vals"
-                  :key="i"
-                  border
-                ></el-checkbox>
+                <el-checkbox :label="it" v-for="(it, i) in item.attr_vals" :key="i" border></el-checkbox>
               </el-checkbox-group>
             </el-form-item>
           </el-tab-pane>
           <el-tab-pane label="商品属性" name="2">
-            <el-form-item
-              :label="item.attr_name"
-              v-for="item in onlyTabData"
-              :key="item.attr_id"
-            >
+            <el-form-item :label="item.attr_name" v-for="item in onlyTabData" :key="item.attr_id">
               <el-input v-model="item.attr_vals"></el-input>
             </el-form-item>
           </el-tab-pane>
           <el-tab-pane label="商品图片" name="3">
-            <el-upload
-              :action="uploadURL"
-              :on-preview="handlePreview"
-              :on-remove="handleRemove"
-              list-type="picture"
-              :headers="headersObj"
-              :on-success="handleSuccess"
-            >
+            <el-upload :action="uploadURL" :on-preview="handlePreview" :on-remove="handleRemove" list-type="picture" :headers="headersObj" :on-success="handleSuccess">
               <el-button size="small" type="primary">点击上传</el-button>
-              <div slot="tip" class="el-upload__tip">
-                只能上传jpg/png文件，且不超过500kb
-              </div>
+              <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
           </el-tab-pane>
           <el-tab-pane label="商品内容" name="4">
             <!-- 富文本编辑器组件 -->
-            <quill-editor v-model="addForm.goods_introduce"> </quill-editor>
-            <el-button type="primary" class="btnAdd" @click="add"
-              >添加商品</el-button
-            >
+            <!-- <quill-editor v-model="addForm.goods_introduce"> </quill-editor> -->
+            <el-button type="primary" class="btnAdd" @click="add">添加商品</el-button>
           </el-tab-pane>
         </el-tabs>
       </el-form>
@@ -220,25 +167,18 @@ export default {
     },
     async tabClick() {
       if (this.activeIndex === '1') {
-        const { data: res } = await this.$http.get(
-          `categories/${this.cateId}/attributes`,
-          {
-            params: { sel: 'many' },
-          }
-        )
+        const { data: res } = await this.$http.get(`categories/${this.cateId}/attributes`, {
+          params: { sel: 'many' },
+        })
         res.data.forEach((item) => {
-          item.attr_vals =
-            item.attr_vals.length === 0 ? [] : item.attr_vals.split(',')
+          item.attr_vals = item.attr_vals.length === 0 ? [] : item.attr_vals.split(',')
         })
         this.manyTabData = res.data
       }
       if (this.activeIndex === '2') {
-        const { data: res } = await this.$http.get(
-          `categories/${this.cateId}/attributes`,
-          {
-            params: { sel: 'only' },
-          }
-        )
+        const { data: res } = await this.$http.get(`categories/${this.cateId}/attributes`, {
+          params: { sel: 'only' },
+        })
         if (res.meta.status !== 200) {
           return this.$message.error('获取信息失败')
         }
@@ -292,7 +232,7 @@ export default {
 
         /* 发起请求 */
         const { data: res } = await this.$http.post('goods', form)
-        console.log(res);
+        console.log(res)
         if (res.meta.status !== 201) {
           return this.$message.error('添加商品失败')
         }

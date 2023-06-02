@@ -6,27 +6,14 @@
         <img src="../assets/logo.png" alt="" />
       </div>
       <!-- 登录框 -->
-      <el-form
-        ref="loginFormRef"
-        label-width="0px"
-        class="login_form"
-        :model="loginForm"
-        :rules="loginFormRules"
-      >
+      <el-form ref="loginFormRef" label-width="0px" class="login_form" :model="loginForm" :rules="loginFormRules">
         <!-- 用户名 -->
         <el-form-item prop="username">
-          <el-input
-            prefix-icon="iconfont icon-user"
-            v-model="loginForm.username"
-          ></el-input>
+          <el-input prefix-icon="iconfont icon-user" v-model="loginForm.username"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
-          <el-input
-            prefix-icon="iconfont icon-3702mima"
-            v-model="loginForm.password"
-            type="password"
-          ></el-input>
+          <el-input prefix-icon="iconfont icon-3702mima" v-model="loginForm.password" type="password"></el-input>
         </el-form-item>
         <!-- 按钮 -->
         <el-form-item class="btns">
@@ -51,16 +38,11 @@ export default {
       loginFormRules: {
         username: [
           { required: true, message: '请输入用户名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' },
+          { min: 3, max: 12, message: '长度在 3 到 12 个字符' },
         ],
         password: [
           { required: true, message: '请输入登录名称', trigger: 'blur' },
-          {
-            min: 6,
-            max: 15,
-            message: '长度在 6 到 15 个字符',
-            trigger: 'blur',
-          },
+          { min: 6, max: 15, message: '长度在 6 到 15 个字符' },
         ],
       },
     }
@@ -76,12 +58,14 @@ export default {
         /* false直接退出不发起请求 */
         if (!valid) return
         const { data: res } = await this.$http.post('login', this.loginForm)
+        console.log(res);
         if (res.meta.status !== 200) return this.$message.error('登录失败')
         this.$message.success('登录成功')
         /* 将登录后的token保存到sessionStorage中，
                 其他API接口必须在登录后才能访问，
                 只在当前打开期间有效，所以放在 sessionStorage中*/
         window.sessionStorage.setItem('token', res.data.token)
+        window.sessionStorage.setItem('username', res.data.username)
         // 通过编程式导航跳转到后台主页，路由地址是/home
         this.$router.push('/home')
       })
