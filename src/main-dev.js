@@ -25,7 +25,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 /* 配置请求根路径 */
-axios.defaults.baseURL = "http://43.143.0.76:8889/api/private/v1/"
+axios.defaults.baseURL = "http://1.13.159.135/api/private/v1"
 /* 请求拦截 */
 axios.interceptors.request.use(config=>{
   NProgress.start();/* 展示进度条 */
