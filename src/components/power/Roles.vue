@@ -169,6 +169,7 @@ export default {
     async getRolesList() {
       const { data: res } = await this.$http.get('roles')
       this.rolesList = res.data
+      console.log(this.rolesList);
     },
     /* 根据ID删除对应的权限 */
     async removeRightsById(role, rightId) {
