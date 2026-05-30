@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "serve": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serv",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build"
   },
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@vue/cli": "^3.12.1",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "echarts": "^5.1.2",
@@ -18,7 +17,7 @@
     "nprogress": "^0.2.0",
     "vue": "^2.6.11",
     "vue-quill-editor": "^3.0.6",
-    "vue-router": "^3.2.0",
+    "vue-router": "^3.6.5",
     "vue-table-with-tree-grid": "^0.2.4"
   },
   "devDependencies": {
@@ -28,7 +27,8 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "less": "^4.1.1",
     "vue-cli-plugin-element-starter": "^1.0.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack-bundle-analyzer": "^3.9.0"
   },
   "browserslist": [
     "> 1%",
