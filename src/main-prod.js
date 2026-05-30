@@ -26,7 +26,7 @@ import 'nprogress/nprogress.css'
 
 /* 配置请求根路径 */
 //axios.defaults.baseURL = "http://127.0.0.1:8888/api/private/v1/"
-axios.defaults.baseURL = "http://124.71.156.167:8890/api/private/v1/"
+axios.defaults.baseURL = "https://my-mall-q45t.onrender.com/api/private/v1/"
 
 /* 请求拦截 */
 axios.interceptors.request.use(config=>{
