@@ -3,7 +3,7 @@ import {
     Button, Form, FormItem, Input, Message, Header, Aside, Main, Container, Menu, Submenu,
     MenuItemGroup, MenuItem, Breadcrumb, BreadcrumbItem,Card,input,row,col,table,tableColumn
     ,Switch,tooltip,pagination,dialog,MessageBox,tag,tree,option,select,cascader,alert,tabs,
-    tabPane,steps,step,checkboxGroup,checkbox,upload,timeline,timelineItem,Loading 
+    tabPane,steps,step,checkboxGroup,checkbox,upload,timeline,timelineItem,Loading,link
 } from 'element-ui'
 
 Vue.use(Button)
@@ -46,6 +46,7 @@ Vue.use(upload)
 Vue.use(timelineItem)
 Vue.use(timeline)
 Vue.use(Loading.directive)
+Vue.use(link)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

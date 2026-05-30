@@ -22,6 +22,9 @@
         </el-form-item>
       </el-form>
     </div>
+    <div class="icp_mes">
+      <el-link href="https://beian.miit.gov.cn/" target="_blank" type="success">闽ICP备2025099728号</el-link>
+    </div>
   </div>
 </template>
 
@@ -78,6 +81,12 @@ export default {
 .login_container {
   background-color: #2b4b6b;
   height: 100%;
+}
+.icp_mes{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  color: #fff;
 }
 .login_box {
   position: relative;
